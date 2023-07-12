@@ -1,0 +1,2676 @@
+{
+  "Compare two arrays": {
+    "prefix": "isEqual",
+    "body": [
+      "// `a` and `b` are arrays",
+      "const isEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);",
+      "// Or",
+      "const isEqual = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);"
+    ],
+    "description": "Compare two arrays"
+  },
+  "Cast a value as an array": {
+    "prefix": "castArray",
+    "body": [
+      "const castArray = (value) => (Array.isArray(value) ? value : [value]);"
+    ],
+    "description": "Cast a value as an array"
+  },
+  "Convert an array of objects to a single object": {
+    "prefix": "toObject",
+    "body": [
+      "const toObject = (arr, key) => arr.reduce((a, b) => ({ ...a, [b[key]]: b }), {});",
+      "// Or",
+      "const toObject = (arr, key) => Object.fromEntries(arr.map((it) => [it[key], it]));"
+    ],
+    "description": "Convert an array of objects to a single object"
+  },
+  "Compare two arrays regardless of order": {
+    "prefix": "isEqual",
+    "body": [
+      "// `a` and `b` are arrays",
+      "const isEqual = (a, b) => JSON.stringify([...new Set(a)].sort()) === JSON.stringify([...new Set(b)].sort());"
+    ],
+    "description": "Compare two arrays regardless of order"
+  },
+  "Check if an array is empty": {
+    "prefix": "isEmpty",
+    "body": [
+      "// `arr` is an array",
+      "const isEmpty = (arr) => Array.isArray(arr) && !arr.length;"
+    ],
+    "description": "Check if an array is empty"
+  },
+  "Convert an array of strings to numbers": {
+    "prefix": "toNumbers",
+    "body": [
+      "const toNumbers = (arr) => arr.map(Number);",
+      "// Or",
+      "const toNumbers = (arr) => arr.map((x) => +x);"
+    ],
+    "description": "Convert an array of strings to numbers"
+  },
+  "Count the occurrences of array elements": {
+    "prefix": "countOccurrences",
+    "body": [
+      "const countOccurrences = (arr) => arr.reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {});"
+    ],
+    "description": "Count the occurrences of array elements"
+  },
+  "Create an array of numbers in the given range": {
+    "prefix": "range",
+    "body": [
+      "const range = (min, max) => [...Array(max - min + 1).keys()].map((i) => i + min);",
+      "// Or",
+      "const range = (min, max) =>",
+      "Array(max - min + 1)",
+      ".fill(0)",
+      ".map((_, i) => min + i);",
+      "// Or",
+      "const range = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);"
+    ],
+    "description": "Create an array of numbers in the given range"
+  },
+  "Create an array of cumulative sum": {
+    "prefix": "accumulate",
+    "body": [
+      "const accumulate = (arr) =>",
+      "arr.map(",
+      "(",
+      "(sum) => (value) =>",
+      "(sum += value)",
+      ")(0)",
+      ");",
+      "// Or",
+      "const accumulate = (arr) => arr.reduce((a, b, i) => (i === 0 ? [b] : [...a, b + a[i - 1]]), [0]);"
+    ],
+    "description": "Create an array of cumulative sum"
+  },
+  "Count by the properties of an array of objects": {
+    "prefix": "countBy",
+    "body": [
+      "const countBy = (arr, prop) => arr.reduce((prev, curr) => ((prev[curr[prop]] = ++prev[curr[prop]] || 1), prev), {});"
+    ],
+    "description": "Count by the properties of an array of objects"
+  },
+  "Count the occurrences of a value in an array": {
+    "prefix": "countOccurrences",
+    "body": [
+      "const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);",
+      "// Or",
+      "const countOccurrences = (arr, val) => arr.filter((item) => item === val).length;"
+    ],
+    "description": "Count the occurrences of a value in an array"
+  },
+  "Clone an array": {
+    "prefix": "clone",
+    "body": [
+      "// `arr` is an array",
+      "const clone = (arr) => arr.slice(0);",
+      "// Or",
+      "const clone = (arr) => [...arr];",
+      "// Or",
+      "const clone = (arr) => Array.from(arr);",
+      "// Or",
+      "const clone = (arr) => arr.map((x) => x);",
+      "// Or",
+      "const clone = (arr) => JSON.parse(JSON.stringify(arr));",
+      "// Or",
+      "const clone = (arr) => arr.concat([]);",
+      "// Or",
+      "const clone = (arr) => structuredClone(arr);"
+    ],
+    "description": "Clone an array"
+  },
+  "Create cartesian product": {
+    "prefix": "cartesian",
+    "body": [
+      "const cartesian = (...sets) => sets.reduce((acc, set) => acc.flatMap((x) => set.map((y) => [...x, y])), [[]]);"
+    ],
+    "description": "Create cartesian product"
+  },
+  "Convert an array to CSV": {
+    "prefix": "arrayToCSV",
+    "body": [
+      "const arrayToCSV = (arr, delimiter = \",\") =>",
+      "arr.map((row) => row.map((value) => `\"${value}\"`).join(delimiter)).join(\"\\n\");"
+    ],
+    "description": "Convert an array to CSV"
+  },
+  "Find the difference between two arrays": {
+    "prefix": "difference",
+    "body": [
+      "const difference = (a, b) => {",
+      "const set = new Set(b);",
+      "return a.filter((item) => !set.has(item));",
+      "};"
+    ],
+    "description": "Find the difference between two arrays"
+  },
+  "Empty an array": {
+    "prefix": "empty",
+    "body": [
+      "const empty = (arr) => (arr.length = 0);",
+      "// Or",
+      "arr = [];"
+    ],
+    "description": "Empty an array"
+  },
+  "Find the maximum item of an array": {
+    "prefix": "max",
+    "body": [
+      "const max = (arr) => Math.max(...arr);"
+    ],
+    "description": "Find the maximum item of an array"
+  },
+  "Find the index of the maximum item of an array": {
+    "prefix": "indexOfMax",
+    "body": [
+      "const indexOfMax = (arr) => arr.reduce((prev, curr, i, a) => (curr > a[prev] ? i : prev), 0);"
+    ],
+    "description": "Find the index of the maximum item of an array"
+  },
+  "Find the closest number from an array": {
+    "prefix": "closest",
+    "body": [
+      "// Find the number from `arr` which is closest to `n`",
+      "const closest = (arr, n) => arr.reduce((prev, curr) => (Math.abs(curr - n) < Math.abs(prev - n) ? curr : prev));",
+      "// Or",
+      "const closest = (arr, n) => arr.sort((a, b) => Math.abs(a - n) - Math.abs(b - n))[0];"
+    ],
+    "description": "Find the closest number from an array"
+  },
+  "Find the index of the last matching item of an array": {
+    "prefix": "lastIndex",
+    "body": [
+      "const lastIndex = (arr, predicate) => arr.reduce((prev, curr, index) => (predicate(curr) ? index : prev), -1);",
+      "// Or",
+      "const lastIndex = (arr, predicate) => arr.map((item) => predicate(item)).lastIndexOf(true);"
+    ],
+    "description": "Find the index of the last matching item of an array"
+  },
+  "Find the index of the minimum item of an array": {
+    "prefix": "indexOfMin",
+    "body": [
+      "const indexOfMin = (arr) => arr.reduce((prev, curr, i, a) => (curr < a[prev] ? i : prev), 0);"
+    ],
+    "description": "Find the index of the minimum item of an array"
+  },
+  "Find the maximum item of an array by given key": {
+    "prefix": "maxBy",
+    "body": [
+      "const maxBy = (arr, key) => arr.reduce((a, b) => (a[key] >= b[key] ? a : b), {});"
+    ],
+    "description": "Find the maximum item of an array by given key"
+  },
+  "Find the length of the longest string in an array": {
+    "prefix": "findLongest",
+    "body": [
+      "const findLongest = (words) => Math.max(...words.map((el) => el.length));"
+    ],
+    "description": "Find the length of the longest string in an array"
+  },
+  "Find the minimum item of an array by given key": {
+    "prefix": "minBy",
+    "body": [
+      "const minBy = (arr, key) => arr.reduce((a, b) => (a[key] < b[key] ? a : b), {});"
+    ],
+    "description": "Find the minimum item of an array by given key"
+  },
+  "Flatten an array": {
+    "prefix": "flat",
+    "body": [
+      "const flat = (arr) =>",
+      "[].concat.apply(",
+      "[],",
+      "arr.map((a) => (Array.isArray(a) ? flat(a) : a))",
+      ");",
+      "// Or",
+      "const flat = (arr) => arr.reduce((a, b) => (Array.isArray(b) ? [...a, ...flat(b)] : [...a, b]), []);",
+      "// Or",
+      "// See the browser compatibility at https://caniuse.com/#feat=array-flat",
+      "const flat = (arr) => arr.flat();"
+    ],
+    "description": "Flatten an array"
+  },
+  "Generate an array of alphabet characters": {
+    "prefix": "alphabet",
+    "body": [
+      "const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');",
+      "// Or",
+      "const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];",
+      "// Or",
+      "const alphabet = Array(26)",
+      ".fill(0)",
+      ".map((_, i) => String.fromCharCode(i + 97));",
+      "// Or",
+      "const alphabet = [...Array(26).keys()].map((i) => String.fromCharCode(i + 97));",
+      "// Or",
+      "const alphabet = [...Array(26)].map((_, i) => (i + 10).toString(36));",
+      "// Or",
+      "const alphabet = String.fromCharCode(",
+      "...' '",
+      ".repeat(26)",
+      ".split('')",
+      ".map((_, i) => i + 97)",
+      ").split('');"
+    ],
+    "description": "Generate an array of alphabet characters"
+  },
+  "Get all n-th items of an array": {
+    "prefix": "getNthItems",
+    "body": [
+      "const getNthItems = (arr, nth) => arr.filter((_, i) => i % nth === nth - 1);"
+    ],
+    "description": "Get all n-th items of an array"
+  },
+  "Get all subsets of an array": {
+    "prefix": "getSubsets",
+    "body": [
+      "const getSubsets = (arr) => arr.reduce((prev, curr) => prev.concat(prev.map((k) => k.concat(curr))), [[]]);"
+    ],
+    "description": "Get all subsets of an array"
+  },
+  "Get all arrays of consecutive elements": {
+    "prefix": "getConsecutiveArrays",
+    "body": [
+      "const getConsecutiveArrays = (arr, size) => (size > arr.length ? [] : arr.slice(size - 1).map((_, i) => arr.slice(i, size + i)));"
+    ],
+    "description": "Get all arrays of consecutive elements"
+  },
+  "Get the largest numbers in an array": {
+    "prefix": "maxNumbers",
+    "body": [
+      "const maxNumbers = (arr, number = 1) =>",
+      "[...arr].sort((x, y) => y - x).slice(0, number);"
+    ],
+    "description": "Get the largest numbers in an array"
+  },
+  "Find the minimum item of an array": {
+    "prefix": "min",
+    "body": [
+      "const min = (arr) => Math.min(...arr);"
+    ],
+    "description": "Find the minimum item of an array"
+  },
+  "Get union of arrays": {
+    "prefix": "union",
+    "body": [
+      "const union = (...arr) => [...new Set(arr.flat())];"
+    ],
+    "description": "Get union of arrays"
+  },
+  "Get the sum of an array of numbers": {
+    "prefix": "sum",
+    "body": [
+      "const sum = (arr) => arr.reduce((a, b) => a + b, 0);"
+    ],
+    "description": "Get the sum of an array of numbers"
+  },
+  "Get indices of a value in an array": {
+    "prefix": "indices",
+    "body": [
+      "const indices = (arr, value) => arr.reduce((acc, v, i) => (v === value ? [...acc, i] : acc), []);",
+      "// Or",
+      "const indices = (arr, value) => arr.map((v, i) => (v === value ? i : false)).filter(Boolean);"
+    ],
+    "description": "Get indices of a value in an array"
+  },
+  "Get the intersection of arrays": {
+    "prefix": "getIntersection",
+    "body": [
+      "const getIntersection = (a, ...arr) => [...new Set(a)].filter((v) => arr.every((b) => b.includes(v)));"
+    ],
+    "description": "Get the intersection of arrays"
+  },
+  "Get the rank of an array of numbers": {
+    "prefix": "ranking",
+    "body": [
+      "const ranking = (arr) => arr.map((x, y, z) => z.filter((w) => w > x).length + 1);"
+    ],
+    "description": "Get the rank of an array of numbers"
+  },
+  "Group an array of objects by a key": {
+    "prefix": "groupBy",
+    "body": [
+      "const groupBy = (arr, key) => arr.reduce((acc, item) => ((acc[item[key]] = [...(acc[item[key]] || []), item]), acc), {});"
+    ],
+    "description": "Group an array of objects by a key"
+  },
+  "Get the average of an array": {
+    "prefix": "average",
+    "body": [
+      "const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;"
+    ],
+    "description": "Get the average of an array"
+  },
+  "Merge two arrays": {
+    "prefix": "merge",
+    "body": [
+      "// Merge but don't remove the duplications",
+      "const merge = (a, b) => a.concat(b);",
+      "// Or",
+      "const merge = (a, b) => [...a, ...b];",
+      "// Merge and remove the duplications",
+      "const merge = (a, b) => [...new Set(a.concat(b))];",
+      "// Or",
+      "const merge = (a, b) => [...new Set([...a, ...b])];"
+    ],
+    "description": "Merge two arrays"
+  },
+  "Partition an array based on a condition": {
+    "prefix": "partition",
+    "body": [
+      "const partition = (arr, criteria) => arr.reduce((acc, i) => (acc[criteria(i) ? 0 : 1].push(i), acc), [[], []]);"
+    ],
+    "description": "Partition an array based on a condition"
+  },
+  "Get the unique values of an array": {
+    "prefix": "unique",
+    "body": [
+      "const unique = (arr) => [...new Set(arr)];",
+      "// Or",
+      "const unique = (arr) => arr.filter((el, i, array) => array.indexOf(el) === i);",
+      "// Or",
+      "const unique = (arr) => arr.reduce((acc, el) => (acc.includes(el) ? acc : [...acc, el]), []);"
+    ],
+    "description": "Get the unique values of an array"
+  },
+  "Intersperse element between elements": {
+    "prefix": "intersperse",
+    "body": [
+      "const intersperse = (a, s) => [...Array(2 * a.length - 1)].map((_, i) => (i % 2 ? s : a[i / 2]));"
+    ],
+    "description": "Intersperse element between elements"
+  },
+  "Remove duplicate values in an array": {
+    "prefix": "removeDuplicate",
+    "body": [
+      "const removeDuplicate = (arr) => arr.filter((i) => arr.indexOf(i) === arr.lastIndexOf(i));"
+    ],
+    "description": "Remove duplicate values in an array"
+  },
+  "Remove falsey values from an array": {
+    "prefix": "compact",
+    "body": [
+      "const compact = (arr) => arr.filter(Boolean);"
+    ],
+    "description": "Remove falsey values from an array"
+  },
+  "Repeat an array": {
+    "prefix": "repeat",
+    "body": [
+      "// `arr` is an array",
+      "const repeat = (arr, n) => [].concat(...Array(n).fill(arr));",
+      "// Or",
+      "const repeat = (arr, n) => Array(n).fill(arr).flat();",
+      "// Or",
+      "const repeat = (arr, n) =>",
+      "Array(arr.length * n)",
+      ".fill(0)",
+      ".map((_, i) => arr[i % arr.length]);",
+      "// Or",
+      "const repeat = (arr, n) => Array.from({ length: arr.length * n }, (_, i) => arr[i % arr.length]);"
+    ],
+    "description": "Repeat an array"
+  },
+  "Remove falsy values from array": {
+    "prefix": "removeFalsy",
+    "body": [
+      "const removeFalsy = (arr) => arr.filter(Boolean);"
+    ],
+    "description": "Remove falsy values from array"
+  },
+  "Sort an array of items by given key": {
+    "prefix": "sortBy",
+    "body": [
+      "const sortBy = (arr, k) => arr.concat().sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0));"
+    ],
+    "description": "Sort an array of items by given key"
+  },
+  "Zip multiple arrays": {
+    "prefix": "zip",
+    "body": [
+      "const zip = (...arr) => Array.from({ length: Math.max(...arr.map((a) => a.length)) }, (_, i) => arr.map((a) => a[i]));"
+    ],
+    "description": "Zip multiple arrays"
+  },
+  "Split an array into chunks": {
+    "prefix": "chunk",
+    "body": [
+      "const chunk = (arr, size) => arr.reduce((acc, e, i) => (i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc), []);"
+    ],
+    "description": "Split an array into chunks"
+  },
+  "Shuffle an array": {
+    "prefix": "shuffle",
+    "body": [
+      "const shuffle = (arr) =>",
+      "arr",
+      ".map((a) => ({ sort: Math.random(), value: a }))",
+      ".sort((a, b) => a.sort - b.sort)",
+      ".map((a) => a.value);"
+    ],
+    "description": "Shuffle an array"
+  },
+  "Sort an array of numbers": {
+    "prefix": "sort",
+    "body": [
+      "const sort = (arr) => arr.sort((a, b) => a - b);"
+    ],
+    "description": "Sort an array of numbers"
+  },
+  "Swap the rows and columns of a matrix": {
+    "prefix": "transpose",
+    "body": [
+      "const transpose = (matrix) => matrix[0].map((col, i) => matrix.map((row) => row[i]));",
+      "// Or",
+      "const transpose = (matrix) => matrix[0].map((col, c) => matrix.map((row, r) => matrix[r][c]));",
+      "// Or",
+      "const transpose = (matrix) => matrix.reduce((prev, next) => next.map((item, i) => (prev[i] || []).concat(next[i])), []);"
+    ],
+    "description": "Swap the rows and columns of a matrix"
+  },
+  "Swap two array items": {
+    "prefix": "swapItems",
+    "body": [
+      "// `i` must be less than `j`",
+      "const swapItems = (a, i, j) => (a[i] && a[j] && [...a.slice(0, i), a[j], ...a.slice(i + 1, j), a[i], ...a.slice(j + 1)]) || a;"
+    ],
+    "description": "Swap two array items"
+  },
+  "Check if a value is a function": {
+    "prefix": "isFunction",
+    "body": [
+      "const isFunction = (v) => ['[object Function]', '[object GeneratorFunction]', '[object AsyncFunction]', '[object Promise]'].includes(Object.prototype.toString.call(v));"
+    ],
+    "description": "Check if a value is a function"
+  },
+  "Unzip an array of arrays": {
+    "prefix": "unzip",
+    "body": [
+      "const unzip = (arr) =>",
+      "arr.reduce(",
+      "(acc, c) => (c.forEach((v, i) => acc[i].push(v)), acc),",
+      "Array.from({ length: Math.max(...arr.map((a) => a.length)) }, (_) => [])",
+      ");"
+    ],
+    "description": "Unzip an array of arrays"
+  },
+  "Check if a value is a generator function": {
+    "prefix": "isGeneratorFunction",
+    "body": [
+      "const isGeneratorFunction = (v) => Object.prototype.toString.call(v) === '[object GeneratorFunction]';"
+    ],
+    "description": "Check if a value is a generator function"
+  },
+  "Check if a value is an async function": {
+    "prefix": "isAsyncFunction",
+    "body": [
+      "const isAsyncFunction = (v) => Object.prototype.toString.call(v) === '[object AsyncFunction]';"
+    ],
+    "description": "Check if a value is an async function"
+  },
+  "Box handler": {
+    "prefix": "boxHandler",
+    "body": [
+      "const boxHandler = (x) => ({ next: (f) => boxHandler(f(x)), done: (f) => f(x) });"
+    ],
+    "description": "Box handler"
+  },
+  "Create an empty function": {
+    "prefix": "noop",
+    "body": [
+      "const noop = () => {};",
+      "// Or",
+      "const noop = Function();",
+      "// calling Function() might be detected as using eval by some security tools"
+    ],
+    "description": "Create an empty function"
+  },
+  "Compose functions": {
+    "prefix": "compose",
+    "body": [
+      "// Compose functions from right to left",
+      "const compose =",
+      "(...fns) =>",
+      "(x) =>",
+      "fns.reduceRight((y, f) => f(y), x);"
+    ],
+    "description": "Compose functions"
+  },
+  "Execute a function once": {
+    "prefix": "once",
+    "body": [
+      "const once = (fn) =>",
+      "(",
+      "(ran = false) =>",
+      "() =>",
+      "ran ? fn : ((ran = !ran), (fn = fn()))",
+      ")();"
+    ],
+    "description": "Execute a function once"
+  },
+  "Compose functions from left to right": {
+    "prefix": "pipe",
+    "body": [
+      "// Compose functions from left to right",
+      "const pipe =",
+      "(...fns) =>",
+      "(x) =>",
+      "fns.reduce((y, f) => f(y), x);"
+    ],
+    "description": "Compose functions from left to right"
+  },
+  "Curry a function": {
+    "prefix": "curry",
+    "body": [
+      "const curry = (fn, ...args) => (fn.length <= args.length ? fn(...args) : curry.bind(null, fn, ...args));"
+    ],
+    "description": "Curry a function"
+  },
+  "Identity function": {
+    "prefix": "identity",
+    "body": [
+      "const identity = (x) => x;"
+    ],
+    "description": "Identity function"
+  },
+  "Flip the arguments of a function": {
+    "prefix": "flip",
+    "body": [
+      "// Reverse the order of arguments",
+      "const flip =",
+      "(fn) =>",
+      "(...args) =>",
+      "fn(...args.reverse());",
+      "// For binary functions",
+      "const flip = (fn) => (b, a) => fn(a, b);",
+      "// Or for curried functions",
+      "const flip = (fn) => (b) => (a) => fn(a)(b);"
+    ],
+    "description": "Flip the arguments of a function"
+  },
+  "Create a function that accepts a single argument": {
+    "prefix": "unary",
+    "body": [
+      "const unary = (fn) => (arg) => fn(arg);"
+    ],
+    "description": "Create a function that accepts a single argument"
+  },
+  "Delay the evaluation of a function": {
+    "prefix": "thunkfy",
+    "body": [
+      "// returns a new version of `fn` that returns values as lazy evaluable",
+      "const thunkfy =",
+      "(fn) =>",
+      "(...args) =>",
+      "() =>",
+      "fn(...args);"
+    ],
+    "description": "Delay the evaluation of a function"
+  },
+  "Uncurry a function": {
+    "prefix": "uncurry",
+    "body": [
+      "// `fn` is a curried function",
+      "// `n` is the depth of parameters",
+      "const uncurry =",
+      "(fn, n = 1) =>",
+      "(...args) =>",
+      "(",
+      "(acc) => (args) =>",
+      "args.reduce((x, y) => x(y), acc)",
+      ")(fn)(args.slice(0, n));"
+    ],
+    "description": "Uncurry a function"
+  },
+  "Memoize a function": {
+    "prefix": "memoize",
+    "body": [
+      "const memoize = (fn) =>",
+      "(",
+      "(cache = Object.create(null)) =>",
+      "(arg) =>",
+      "cache[arg] || (cache[arg] = fn(arg))",
+      ")();"
+    ],
+    "description": "Memoize a function"
+  },
+  "Check if an element is focused": {
+    "prefix": "hasFocus",
+    "body": [
+      "const hasFocus = (ele) => ele === document.activeElement;"
+    ],
+    "description": "Check if an element is focused"
+  },
+  "Logical xor operator": {
+    "prefix": "xor",
+    "body": [
+      "// returns `true` if one of the arguments is truthy and the other is falsy",
+      "const xor = (a, b) => (a && !b) || (!a && b);",
+      "// Or",
+      "const xor = (a, b) => !(!a && !b) && !(a && b);",
+      "// Or",
+      "const xor = (a, b) => Boolean(!a ^ !b);"
+    ],
+    "description": "Logical xor operator"
+  },
+  "Partially apply a function": {
+    "prefix": "partial",
+    "body": [
+      "const partial =",
+      "(fn, ...a) =>",
+      "(...b) =>",
+      "fn(...a, ...b);"
+    ],
+    "description": "Partially apply a function"
+  },
+  "Detect macOS browser": {
+    "prefix": "isMacBrowser",
+    "body": [
+      "const isMacBrowser = /Mac|iPod|iPhone|iPad/.test(navigator.platform);"
+    ],
+    "description": "Detect macOS browser"
+  },
+  "Check if an element is a descendant of another": {
+    "prefix": "isDescendant",
+    "body": [
+      "const isDescendant = (child, parent) => parent.contains(child);"
+    ],
+    "description": "Check if an element is a descendant of another"
+  },
+  "Check if user scrolls to the bottom of the page": {
+    "prefix": "isAtBottom",
+    "body": [
+      "const isAtBottom = () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;"
+    ],
+    "description": "Check if user scrolls to the bottom of the page"
+  },
+  "Detect Internet Explorer browser": {
+    "prefix": "isIE",
+    "body": [
+      "const isIE = !!document.documentMode;"
+    ],
+    "description": "Detect Internet Explorer browser"
+  },
+  "Get the selected text": {
+    "prefix": "getSelectedText",
+    "body": [
+      "const getSelectedText = () => window.getSelection().toString();"
+    ],
+    "description": "Get the selected text"
+  },
+  "Check if the touch events are supported": {
+    "prefix": "touchSupported",
+    "body": [
+      "const touchSupported = () => 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch);"
+    ],
+    "description": "Check if the touch events are supported"
+  },
+  "Get the position of an element relative to the document": {
+    "prefix": "getPosition",
+    "body": [
+      "const getPosition = (ele) => ((r = ele.getBoundingClientRect()), { left: r.left + window.scrollX, top: r.top + window.scrollY });"
+    ],
+    "description": "Get the position of an element relative to the document"
+  },
+  "Get all siblings of an element": {
+    "prefix": "siblings",
+    "body": [
+      "const siblings = (ele) => [].slice.call(ele.parentNode.children).filter((child) => child !== ele);"
+    ],
+    "description": "Get all siblings of an element"
+  },
+  "Go back to the previous page": {
+    "prefix": "",
+    "body": [
+      "history.back();",
+      "// Or",
+      "history.go(-1);"
+    ],
+    "description": "Go back to the previous page"
+  },
+  "Hide an element": {
+    "prefix": "hide",
+    "body": [
+      "// Pick the method that is suitable for your use case",
+      "const hide = (ele) => (ele.style.display = 'none');",
+      "// Or",
+      "const hide = (ele) => (ele.style.visibility = 'hidden');",
+      "// Or",
+      "const hide = (ele) => (ele.hidden = true);"
+    ],
+    "description": "Hide an element"
+  },
+  "Insert given HTML before an element": {
+    "prefix": "insertHtmlBefore",
+    "body": [
+      "const insertHtmlBefore = (html, ele) => ele.insertAdjacentHTML('beforebegin', html);"
+    ],
+    "description": "Insert given HTML before an element"
+  },
+  "Insert an element after other one": {
+    "prefix": "insertAfter",
+    "body": [
+      "const insertAfter = (ele, anotherEle) => anotherEle.parentNode.insertBefore(ele, anotherEle.nextSibling);",
+      "// Or",
+      "const insertAfter = (ele, anotherEle) => anotherEle.insertAdjacentElement('afterend', ele);"
+    ],
+    "description": "Insert an element after other one"
+  },
+  "Insert given HTML after an element": {
+    "prefix": "insertHtmlAfter",
+    "body": [
+      "const insertHtmlAfter = (html, ele) => ele.insertAdjacentHTML('afterend', html);"
+    ],
+    "description": "Insert given HTML after an element"
+  },
+  "Reload the current page": {
+    "prefix": "reload",
+    "body": [
+      "const reload = () => location.reload();",
+      "// Or",
+      "const reload = () => (location.href = location.href);"
+    ],
+    "description": "Reload the current page"
+  },
+  "Insert an element before other one": {
+    "prefix": "insertBefore",
+    "body": [
+      "const insertBefore = (ele, anotherEle) => anotherEle.parentNode.insertBefore(ele, anotherEle);",
+      "// Or",
+      "const insertBefore = (ele, anotherEle) => anotherEle.insertAdjacentElement('beforebegin', ele);"
+    ],
+    "description": "Insert an element before other one"
+  },
+  "Scroll to top of the page": {
+    "prefix": "goToTop",
+    "body": [
+      "const goToTop = () => window.scrollTo(0, 0);"
+    ],
+    "description": "Scroll to top of the page"
+  },
+  "Replace an element": {
+    "prefix": "replace",
+    "body": [
+      "const replace = (ele, newEle) => ele.parentNode.replaceChild(newEle, ele);"
+    ],
+    "description": "Replace an element"
+  },
+  "Strip HTML from a given text": {
+    "prefix": "stripHtml",
+    "body": [
+      "const stripHtml = (html) => new DOMParser().parseFromString(html, 'text/html').body.textContent || '';"
+    ],
+    "description": "Strip HTML from a given text"
+  },
+  "Serialize form data": {
+    "prefix": "serialize",
+    "body": [
+      "const serialize = (formEle) => Array.from(new FormData(formEle)).reduce((p, [k, v]) => Object.assign({}, p, { [k]: p[k] ? (Array.isArray(p[k]) ? p[k] : [p[k]]).concat(v) : v }), {});"
+    ],
+    "description": "Serialize form data"
+  },
+  "Redirect to another page": {
+    "prefix": "goTo",
+    "body": [
+      "const goTo = (url) => (location.href = url);"
+    ],
+    "description": "Redirect to another page"
+  },
+  "Toggle an element": {
+    "prefix": "toggle",
+    "body": [
+      "const toggle = (ele) => (ele.style.display = ele.style.display === 'none' ? 'block' : 'none');",
+      "// Or",
+      "const toggle = (ele) => (ele.hidden = !ele.hidden);"
+    ],
+    "description": "Toggle an element"
+  },
+  "Show an element": {
+    "prefix": "show",
+    "body": [
+      "const show = (ele) => (ele.style.display = '');"
+    ],
+    "description": "Show an element"
+  },
+  "Calculate the linear interpolation between two numbers": {
+    "prefix": "lerp",
+    "body": [
+      "const lerp = (a, b, amount) => (1 - amount) * a + amount * b;"
+    ],
+    "description": "Calculate the linear interpolation between two numbers"
+  },
+  "Calculate the distance between two points": {
+    "prefix": "distance",
+    "body": [
+      "const distance = (p1, p2) => Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));"
+    ],
+    "description": "Calculate the distance between two points"
+  },
+  "Check if a rectangle contains other one": {
+    "prefix": "contains",
+    "body": [
+      "// Returns true if `a` contains `b`",
+      "// (x1, y1) and (x2, y2) are top-left and bottom-right corners",
+      "const contains = (a, b) => a.x1 <= b.x1 && a.y1 <= b.y1 && a.x2 >= b.x2 && a.y2 >= b.y2;"
+    ],
+    "description": "Check if a rectangle contains other one"
+  },
+  "Check if a point is inside a rectangle": {
+    "prefix": "isInside",
+    "body": [
+      "const isInside = (point, rect) => point.x > rect.left && point.x < rect.right && point.y > rect.top && point.y < rect.bottom;"
+    ],
+    "description": "Check if a point is inside a rectangle"
+  },
+  "Calculate the angle of a line defined by two points": {
+    "prefix": "radiansAngle",
+    "body": [
+      "// In radians",
+      "const radiansAngle = (p1, p2) => Math.atan2(p2.y - p1.y, p2.x - p1.x);",
+      "// In degrees",
+      "const degreesAngle = (p1, p2) => (Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180) / Math.PI;"
+    ],
+    "description": "Calculate the angle of a line defined by two points"
+  },
+  "Calculate the midpoint between two points": {
+    "prefix": "midpoint",
+    "body": [
+      "const midpoint = (p1, p2) => [(p1.x + p2.x) / 2, (p1.y + p2.y) / 2];"
+    ],
+    "description": "Calculate the midpoint between two points"
+  },
+  "Check if a rectangle overlaps other one": {
+    "prefix": "overlaps",
+    "body": [
+      "// Returns true if `a` overlaps `b`",
+      "// (x1, y1) and (x2, y2) are top-left and bottom-right corners",
+      "const overlaps = (a, b) => (a.x1 < b.x2 && b.x1 < a.x2) || (a.y1 < b.y2 && b.y1 < a.y2);"
+    ],
+    "description": "Check if a rectangle overlaps other one"
+  },
+  "Convert radians to degrees": {
+    "prefix": "radsToDegs",
+    "body": [
+      "const radsToDegs = (rad) => (rad * 180) / Math.PI;"
+    ],
+    "description": "Convert radians to degrees"
+  },
+  "Normalize the ratio of a number in a range": {
+    "prefix": "normalizeRatio",
+    "body": [
+      "const normalizeRatio = (value, min, max) => (value - min) / (max - min);"
+    ],
+    "description": "Normalize the ratio of a number in a range"
+  },
+  "Binary search": {
+    "prefix": "binarySearch",
+    "body": [
+      "const binarySearch = (arr, item) => {",
+      "let l = 0,",
+      "r = arr.length - 1;",
+      "while (l <= r) {",
+      "const mid = Math.floor((l + r) / 2);",
+      "const guess = arr[mid];",
+      "if (guess === item) return mid;",
+      "if (guess > item) r = mid - 1;",
+      "else l = mid + 1;",
+      "}",
+      "return -1;",
+      "};"
+    ],
+    "description": "Binary search"
+  },
+  "Check if the code is running in NodeJS": {
+    "prefix": "isNode",
+    "body": [
+      "const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;"
+    ],
+    "description": "Check if the code is running in NodeJS"
+  },
+  "Convert degrees to radians": {
+    "prefix": "degsToRads",
+    "body": [
+      "const degsToRads = (deg) => (deg * Math.PI) / 180.0;"
+    ],
+    "description": "Convert degrees to radians"
+  },
+  "Round a number to the nearest multiple of a given value": {
+    "prefix": "roundNearest",
+    "body": [
+      "const roundNearest = (value, nearest) => Math.round(value / nearest) * nearest;"
+    ],
+    "description": "Round a number to the nearest multiple of a given value"
+  },
+  "Check if the code is running in Jest": {
+    "prefix": "isRunningInJest",
+    "body": [
+      "const isRunningInJest = typeof process !== 'undefined' && process.env.JEST_WORKER_ID !== undefined;"
+    ],
+    "description": "Check if the code is running in Jest"
+  },
+  "Clear all cookies": {
+    "prefix": "clearCookies",
+    "body": [
+      "const clearCookies = () => document.cookie.split(';').forEach((c) => (document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`)));"
+    ],
+    "description": "Clear all cookies"
+  },
+  "Check if the code is running in the browser": {
+    "prefix": "isBrowser",
+    "body": [
+      "const isBrowser = typeof window === 'object' && typeof document === 'object';"
+    ],
+    "description": "Check if the code is running in the browser"
+  },
+  "Convert Fahrenheit to Celsius": {
+    "prefix": "fahrenheitToCelsius",
+    "body": [
+      "const fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9;"
+    ],
+    "description": "Convert Fahrenheit to Celsius"
+  },
+  "Convert cookie to object": {
+    "prefix": "cookies",
+    "body": [
+      "const cookies = document.cookie",
+      ".split(';')",
+      ".map((item) => item.split('='))",
+      ".reduce((acc, [k, v]) => (acc[k.trim().replace('\"', '')] = v) && acc, {});"
+    ],
+    "description": "Convert cookie to object"
+  },
+  "Convert 3 digits color to 6 digits color": {
+    "prefix": "toFullHexColor",
+    "body": [
+      "const toFullHexColor = (color) =>",
+      "`#${(color.startsWith('#') ? color.slice(1) : color)",
+      ".split('')",
+      ".map((c) => `${c}${c}`)",
+      ".join('')}`;"
+    ],
+    "description": "Convert 3 digits color to 6 digits color"
+  },
+  "Convert rgb color to hex": {
+    "prefix": "rgbToHex",
+    "body": [
+      "const rgbToHex = (red, green, blue) => `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;",
+      "// Or",
+      "const rgbToHex = (red, green, blue) => `#${[red, green, blue].map((v) => v.toString(16).padStart(2, '0')).join('')}`;"
+    ],
+    "description": "Convert rgb color to hex"
+  },
+  "Convert hex to rgb": {
+    "prefix": "hexToRgb",
+    "body": [
+      "const hexToRgb = (hex) =>",
+      "hex",
+      ".replace(/^#?([a-f\\d])([a-f\\d])([a-f\\d])$/i, (_, r, g, b) => `#${r}${r}${g}${g}${b}${b}`)",
+      ".substring(1)",
+      ".match(/.{2}/g)",
+      ".map((x) => parseInt(x, 16));"
+    ],
+    "description": "Convert hex to rgb"
+  },
+  "Convert Celsius to Fahrenheit": {
+    "prefix": "celsiusToFahrenheit",
+    "body": [
+      "const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;"
+    ],
+    "description": "Convert Celsius to Fahrenheit"
+  },
+  "Decode a JWT token": {
+    "prefix": "decode",
+    "body": [
+      "const decode = (token) =>",
+      "decodeURIComponent(",
+      "atob(token.split('.')[1].replace('-', '+').replace('_', '/'))",
+      ".split('')",
+      ".map((c) => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`)",
+      ".join('')",
+      ");"
+    ],
+    "description": "Decode a JWT token"
+  },
+  "Detect dark mode": {
+    "prefix": "isDarkMode",
+    "body": [
+      "const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;"
+    ],
+    "description": "Detect dark mode"
+  },
+  "Easing functions": {
+    "prefix": "linear",
+    "body": [
+      "// Some easing functions",
+      "// See https://gist.github.com/gre/1650294 and https://easings.net",
+      "const linear = (t) => t;",
+      "const easeInQuad = (t) => t * t;",
+      "const easeOutQuad = (t) => t * (2 - t);",
+      "const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);",
+      "const easeInCubic = (t) => t * t * t;",
+      "const easeOutCubic = (t) => --t * t * t + 1;",
+      "const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1);",
+      "const easeInQuart = (t) => t * t * t * t;",
+      "const easeOutQuart = (t) => 1 - --t * t * t * t;",
+      "const easeInOutQuart = (t) => (t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t);",
+      "const easeInQuint = (t) => t * t * t * t * t;",
+      "const easeOutQuint = (t) => 1 + --t * t * t * t * t;",
+      "const easeInOutQuint = (t) => (t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t);",
+      "const easeInSine = (t) => 1 + Math.sin((Math.PI / 2) * t - Math.PI / 2);",
+      "const easeOutSine = (t) => Math.sin((Math.PI / 2) * t);",
+      "const easeInOutSine = (t) => (1 + Math.sin(Math.PI * t - Math.PI / 2)) / 2;",
+      "const easeInElastic = (t) => (0.04 - 0.04 / t) * Math.sin(25 * t) + 1;",
+      "const easeOutElastic = (t) => ((0.04 * t) / --t) * Math.sin(25 * t);",
+      "const easeInOutElastic = (t) => ((t -= 0.5) < 0 ? (0.02 + 0.01 / t) * Math.sin(50 * t) : (0.02 - 0.01 / t) * Math.sin(50 * t) + 1);"
+    ],
+    "description": "Easing functions"
+  },
+  "Convert URL parameters to object": {
+    "prefix": "getUrlParams",
+    "body": [
+      "const getUrlParams = (query) => Array.from(new URLSearchParams(query)).reduce((p, [k, v]) => Object.assign({}, p, { [k]: p[k] ? (Array.isArray(p[k]) ? p[k] : [p[k]]).concat(v) : v }), {});"
+    ],
+    "description": "Convert URL parameters to object"
+  },
+  "Get the value of a cookie": {
+    "prefix": "cookie",
+    "body": [
+      "const cookie = (name) => `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift();"
+    ],
+    "description": "Get the value of a cookie"
+  },
+  "Emulate a dice throw": {
+    "prefix": "throwdice",
+    "body": [
+      "const throwdice = () => ~~(Math.random() * 6) + 1;"
+    ],
+    "description": "Emulate a dice throw"
+  },
+  "Get the first defined and non null argument": {
+    "prefix": "coalesce",
+    "body": [
+      "const coalesce = (...args) => args.find((item) => item !== undefined && item !== null);",
+      "// Or",
+      "const coalesce = (...args) => args.find((item) => ![undefined, null].includes(item));"
+    ],
+    "description": "Get the first defined and non null argument"
+  },
+  "Encode a URL": {
+    "prefix": "encode",
+    "body": [
+      "// `encodeURIComponent` doesn't encode -_.!~*'()",
+      "const encode = (url) => encodeURIComponent(url).replace(/!/g, '%21').replace(/~/g, '%7E').replace(/\\*/g, '%2A').replace(/'/g, '%27').replace(/\\(/g, '%28').replace(/\\)/g, '%29').replace(/%20/g, '+');"
+    ],
+    "description": "Encode a URL"
+  },
+  "Create a asynchronous delay in milliseconds": {
+    "prefix": "delay",
+    "body": [
+      "const delay = ms => new Promise(resolve => setTimeout(resolve, ms));"
+    ],
+    "description": "Create a asynchronous delay in milliseconds"
+  },
+  "Get the value of a param from a URL": {
+    "prefix": "getParam",
+    "body": [
+      "const getParam = (url, param) => new URLSearchParams(new URL(url).search).get(param);"
+    ],
+    "description": "Get the value of a param from a URL"
+  },
+  "Redirect the page to HTTPS if it is in HTTP": {
+    "prefix": "redirectHttps",
+    "body": [
+      "const redirectHttps = () => (location.protocol === 'https:' ? {} : location.replace(`https://${location.href.split('//')[1]}`));",
+      "// Or",
+      "const redirectHttps = () => (location.protocol === 'https:' ? {} : (location.protocol = 'https:'));"
+    ],
+    "description": "Redirect the page to HTTPS if it is in HTTP"
+  },
+  "Generate an unique and increment id": {
+    "prefix": "uid",
+    "body": [
+      "const uid = (() => ((id = 0), () => id++))();"
+    ],
+    "description": "Generate an unique and increment id"
+  },
+  "Get type of a variable in string": {
+    "prefix": "getTypeOf",
+    "body": [
+      "const getTypeOf = (obj) => Object.prototype.toString.call(obj).match(/\\[object (.*)\\]/)[1];"
+    ],
+    "description": "Get type of a variable in string"
+  },
+  "Calculate Fibonacci numbers": {
+    "prefix": "fibo",
+    "body": [
+      "const fibo = (n, memo = {}) => memo[n] || (n <= 2 ? 1 : (memo[n] = fibo(n - 1, memo) + fibo(n - 2, memo)));"
+    ],
+    "description": "Calculate Fibonacci numbers"
+  },
+  "Run Promises in sequence": {
+    "prefix": "run",
+    "body": [
+      "// `promises` is an array of `Promise`",
+      "const run = (promises) => promises.reduce((p, c) => p.then((rp) => c.then((rc) => [...rp, rc])), Promise.resolve([]));"
+    ],
+    "description": "Run Promises in sequence"
+  },
+  "Calculate the average of arguments": {
+    "prefix": "average",
+    "body": [
+      "const average = (...args) => args.reduce((a, b) => a + b) / args.length;"
+    ],
+    "description": "Calculate the average of arguments"
+  },
+  "Wait for an amount of time": {
+    "prefix": "wait",
+    "body": [
+      "const wait = async (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));"
+    ],
+    "description": "Wait for an amount of time"
+  },
+  "Swap two variables": {
+    "prefix": "",
+    "body": [
+      "[a, b] = [b, a];",
+      "// Or",
+      "a = [b, (b = a)][0];",
+      "// Or",
+      "a = ((x) => x)(b, (b = a));",
+      "// Or",
+      "// (only works with numbers)",
+      "a = b + ((b = a), 0);",
+      "a = b * ((b = a), 1);"
+    ],
+    "description": "Swap two variables"
+  },
+  "Calculate the division of arguments": {
+    "prefix": "division",
+    "body": [
+      "const division = (...args) => args.reduce((a, b) => a / b);"
+    ],
+    "description": "Calculate the division of arguments"
+  },
+  "Calculate the factorial of a number": {
+    "prefix": "factorial",
+    "body": [
+      "const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));"
+    ],
+    "description": "Calculate the factorial of a number"
+  },
+  "Clamp a number between two values": {
+    "prefix": "clamp",
+    "body": [
+      "const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val));"
+    ],
+    "description": "Clamp a number between two values"
+  },
+  "Add an ordinal suffix to a number": {
+    "prefix": "addOrdinal",
+    "body": [
+      "// `n` is a position number",
+      "const addOrdinal = (n) => `${n}${['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'}`;"
+    ],
+    "description": "Add an ordinal suffix to a number"
+  },
+  "Calculate the sum of arguments": {
+    "prefix": "sum",
+    "body": [
+      "const sum = (...args) => args.reduce((a, b) => a + b);"
+    ],
+    "description": "Calculate the sum of arguments"
+  },
+  "Multiply arguments": {
+    "prefix": "mul",
+    "body": [
+      "const mul = (...args) => args.reduce((a, b) => a * b);"
+    ],
+    "description": "Multiply arguments"
+  },
+  "Calculate the remainder of division of arguments": {
+    "prefix": "remainder",
+    "body": [
+      "const remainder = (...args) => args.reduce((a, b) => a % b);"
+    ],
+    "description": "Calculate the remainder of division of arguments"
+  },
+  "Convert a number to equivalent characters": {
+    "prefix": "toChars",
+    "body": [
+      "const toChars = (n) => `${n >= 26 ? toChars(Math.floor(n / 26) - 1) : ''}${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[n % 26]}`;"
+    ],
+    "description": "Convert a number to equivalent characters"
+  },
+  "Convert decimal to binary recursively": {
+    "prefix": "decToBi",
+    "body": [
+      "const decToBi = (num) => (num === 0 ? 0 : (num % 2) + 10 * decToBi(~~(num / 2)));"
+    ],
+    "description": "Convert decimal to binary recursively"
+  },
+  "Calculate the mod of collection index": {
+    "prefix": "mod",
+    "body": [
+      "const mod = (a, b) => ((a % b) + b) % b;"
+    ],
+    "description": "Calculate the mod of collection index"
+  },
+  "Get the arrays of digits from a number": {
+    "prefix": "digitize",
+    "body": [
+      "const digitize = (n) => `${n}`.split('').map((v) => parseInt(v, 10));",
+      "// Or",
+      "const digitize = (n) => [...`${n}`].map((v) => parseInt(v, 10));"
+    ],
+    "description": "Get the arrays of digits from a number"
+  },
+  "Convert a string to number": {
+    "prefix": "toNumber",
+    "body": [
+      "const toNumber = (str) => +str;"
+    ],
+    "description": "Convert a string to number"
+  },
+  "Round a number to a given number of digits": {
+    "prefix": "round",
+    "body": [
+      "const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);"
+    ],
+    "description": "Round a number to a given number of digits"
+  },
+  "Prefix an integer with zeros": {
+    "prefix": "prefixWithZeros",
+    "body": [
+      "const prefixWithZeros = (n, length) => (n / Math.pow(10, length)).toFixed(length).substr(2);",
+      "// Or",
+      "const prefixWithZeros = (n, length) => `${Array(length).join('0')}${n}`.slice(-length);",
+      "// Or",
+      "const prefixWithZeros = (n, length) => String(n).padStart(length, '0');"
+    ],
+    "description": "Prefix an integer with zeros"
+  },
+  "Subtract arguments": {
+    "prefix": "subtract",
+    "body": [
+      "const subtract = (...args) => args.reduce((a, b) => a - b);"
+    ],
+    "description": "Subtract arguments"
+  },
+  "Compute the greatest common divisor between two numbers": {
+    "prefix": "gcd",
+    "body": [
+      "const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));"
+    ],
+    "description": "Compute the greatest common divisor between two numbers"
+  },
+  "Truncate a number to a given number of decimal places without rounding": {
+    "prefix": "toFixed",
+    "body": [
+      "const toFixed = (n, fixed) => `${n}`.match(new RegExp(`^-?\\\\d+(?:\\.\\\\d{0,${fixed}})?`))[0];",
+      "// Or",
+      "const toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);"
+    ],
+    "description": "Truncate a number to a given number of decimal places without rounding"
+  },
+  "Truncate a number at decimal": {
+    "prefix": "truncate",
+    "body": [
+      "const truncate = (n) => ~~n;"
+    ],
+    "description": "Truncate a number at decimal"
+  },
+  "Append data to object": {
+    "prefix": "appendDataToObject",
+    "body": [
+      "const appendDataToObject = (obj, newData) => Object.assign(obj, newData);"
+    ],
+    "description": "Append data to object"
+  },
+  "Wrap a number between two values": {
+    "prefix": "wrap",
+    "body": [
+      "const wrap = (num, min, max) => ((((num - min) % (max - min)) + (max - min)) % (max - min)) + min;"
+    ],
+    "description": "Wrap a number between two values"
+  },
+  "Create an empty map that does not have properties": {
+    "prefix": "map",
+    "body": [
+      "// `map` doesn't have any properties",
+      "const map = Object.create(null);",
+      "// The following `map` has `__proto__` property",
+      "// const map = {};"
+    ],
+    "description": "Create an empty map that does not have properties"
+  },
+  "Create a class with constructor": {
+    "prefix": "",
+    "body": [
+      "class ClassName {",
+      "constructor(param1, param2) { // constructor method for initializing new objects",
+      "this.property1 = param1;",
+      "this.property2 = param2;",
+      "}",
+      "method1() { // instance method",
+      "// logic for method1",
+      "}",
+      "method2() { // instance method",
+      "// logic for method2",
+      "}",
+      "static staticMethod() { // static method",
+      "// logic for staticMethod",
+      "}",
+      "}"
+    ],
+    "description": "Create a class with constructor"
+  },
+  "Create an array of key-value pairs from an object": {
+    "prefix": "keyValuePairsToArray",
+    "body": [
+      "const keyValuePairsToArray = (object) =>",
+      "Object.keys(object).map((key) => [key, object[key]]);"
+    ],
+    "description": "Create an array of key-value pairs from an object"
+  },
+  "Check if multiple objects are equal": {
+    "prefix": "isEqual",
+    "body": [
+      "const isEqual = (...objects) => objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));"
+    ],
+    "description": "Check if multiple objects are equal"
+  },
+  "Extract values of a property from an array of objects": {
+    "prefix": "pluck",
+    "body": [
+      "const pluck = (objs, property) => objs.map((obj) => obj[property]);"
+    ],
+    "description": "Extract values of a property from an array of objects"
+  },
+  "Invert keys and values of an object": {
+    "prefix": "invert",
+    "body": [
+      "const invert = (obj) => Object.keys(obj).reduce((res, k) => Object.assign(res, { [obj[k]]: k }), {});",
+      "// Or",
+      "const invert = (obj) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [v, k]));"
+    ],
+    "description": "Invert keys and values of an object"
+  },
+  "Returns an object with unique values by key": {
+    "prefix": "",
+    "body": [
+      "export const getUniqueArrObj = (arrObj, keyUnique) => [...new Map(arrObj.map((item) => [item[keyUnique], item])).values()];"
+    ],
+    "description": "Returns an object with unique values by key"
+  },
+  "Immutably rename object keys": {
+    "prefix": "renameKeys",
+    "body": [
+      "const renameKeys = (keysMap, obj) => Object.keys(obj).reduce((acc, key) => ({ ...acc, ...{ [keysMap[key] || key]: obj[key] } }), {});"
+    ],
+    "description": "Immutably rename object keys"
+  },
+  "Omit a subset of properties from an object": {
+    "prefix": "omit",
+    "body": [
+      "const omit = (obj, keys) =>",
+      "Object.keys(obj)",
+      ".filter((k) => !keys.includes(k))",
+      ".reduce((res, k) => Object.assign(res, { [k]: obj[k] }), {});"
+    ],
+    "description": "Omit a subset of properties from an object"
+  },
+  "Get the value at given path of an object": {
+    "prefix": "getValue",
+    "body": [
+      "const getValue = (path, obj) => path.split('.').reduce((acc, c) => acc && acc[c], obj);"
+    ],
+    "description": "Get the value at given path of an object"
+  },
+  "Generate a random boolean": {
+    "prefix": "randomBoolean",
+    "body": [
+      "const randomBoolean = () => Math.random() >= 0.5;"
+    ],
+    "description": "Generate a random boolean"
+  },
+  "Pick a subset of properties of an object": {
+    "prefix": "pick",
+    "body": [
+      "const pick = (obj, keys) =>",
+      "Object.keys(obj)",
+      ".filter((k) => keys.includes(k))",
+      ".reduce((res, k) => Object.assign(res, { [k]: obj[k] }), {});"
+    ],
+    "description": "Pick a subset of properties of an object"
+  },
+  "Create an object from the pairs of key and value": {
+    "prefix": "toObj",
+    "body": [
+      "const toObj = (arr) => Object.fromEntries(arr);",
+      "// Or",
+      "const toObj = (arr) => arr.reduce((a, c) => ((a[c[0]] = c[1]), a), {});"
+    ],
+    "description": "Create an object from the pairs of key and value"
+  },
+  "Generate a random floating point number in given range": {
+    "prefix": "randomFloat",
+    "body": [
+      "const randomFloat = (min, max) => Math.random() * (max - min) + min;"
+    ],
+    "description": "Generate a random floating point number in given range"
+  },
+  "Generate a random hex color": {
+    "prefix": "randomColor",
+    "body": [
+      "const randomColor = () => `#${Math.random().toString(16).slice(2, 8).padEnd(6, '0')}`;",
+      "// Or",
+      "const randomColor = () => `#${(~~(Math.random() * (1 << 24))).toString(16)}`;"
+    ],
+    "description": "Generate a random hex color"
+  },
+  "Sort an object by its properties": {
+    "prefix": "sort",
+    "body": [
+      "const sort = (obj) =>",
+      "Object.keys(obj)",
+      ".sort()",
+      ".reduce((p, c) => ((p[c] = obj[c]), p), {});"
+    ],
+    "description": "Sort an object by its properties"
+  },
+  "Generate a random string using Node crypto module": {
+    "prefix": "randomStr",
+    "body": [
+      "const randomStr = () => require('crypto').randomBytes(32).toString('hex');"
+    ],
+    "description": "Generate a random string using Node crypto module"
+  },
+  "Generate a random integer in given range": {
+    "prefix": "randomInteger",
+    "body": [
+      "const randomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;"
+    ],
+    "description": "Generate a random integer in given range"
+  },
+  "Shallow copy an object": {
+    "prefix": "shallowCopy",
+    "body": [
+      "const shallowCopy = obj => Object.assign({}, obj);",
+      "// or",
+      "const shallowCopy = obj => {...obj};"
+    ],
+    "description": "Shallow copy an object"
+  },
+  "Remove all null and undefined properties from an object": {
+    "prefix": "removeNullUndefined",
+    "body": [
+      "const removeNullUndefined = (obj) => Object.entries(obj).reduce((a, [k, v]) => (v == null ? a : ((a[k] = v), a)), {});",
+      "// Or",
+      "const removeNullUndefined = (obj) =>",
+      "Object.entries(obj)",
+      ".filter(([_, v]) => v != null)",
+      ".reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});",
+      "// Or",
+      "const removeNullUndefined = (obj) => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));"
+    ],
+    "description": "Remove all null and undefined properties from an object"
+  },
+  "Generate a random IP address": {
+    "prefix": "randomIp",
+    "body": [
+      "const randomIp = () =>",
+      "Array(4)",
+      ".fill(0)",
+      ".map((_, i) => Math.floor(Math.random() * 255) + (i === 0 ? 1 : 0))",
+      ".join('.');"
+    ],
+    "description": "Generate a random IP address"
+  },
+  "Generate a random sign": {
+    "prefix": "randomSign",
+    "body": [
+      "const randomSign = () => (Math.random() >= 0.5 ? 1 : -1);"
+    ],
+    "description": "Generate a random sign"
+  },
+  "Generate a random string with given length": {
+    "prefix": "generateString",
+    "body": [
+      "const generateString = (length) =>",
+      "Array(length)",
+      ".fill('')",
+      ".map((v) => Math.random().toString(36).charAt(2))",
+      ".join('');"
+    ],
+    "description": "Generate a random string with given length"
+  },
+  "Generate an array of random integers in a given range": {
+    "prefix": "randomArrayInRange",
+    "body": [
+      "const randomArrayInRange = (min, max, n) => Array.from({ length: n }, () => Math.floor(Math.random() * (max - min + 1)) + min);"
+    ],
+    "description": "Generate an array of random integers in a given range"
+  },
+  "Generate a random string from given characters": {
+    "prefix": "generateString",
+    "body": [
+      "const generateString = (length, chars) =>",
+      "Array(length)",
+      ".fill('')",
+      ".map((v) => chars[Math.floor(Math.random() * chars.length)])",
+      ".join('');"
+    ],
+    "description": "Generate a random string from given characters"
+  },
+  "Get a random item and remove it from an array": {
+    "prefix": "randomItem",
+    "body": [
+      "const randomItem = (arr) => arr.splice((Math.random() * arr.length) | 0, 1);"
+    ],
+    "description": "Get a random item and remove it from an array"
+  },
+  "Get a random item from an array": {
+    "prefix": "randomItem",
+    "body": [
+      "const randomItem = (arr) => arr[(Math.random() * arr.length) | 0];"
+    ],
+    "description": "Get a random item from an array"
+  },
+  "Pick a random property of an object": {
+    "prefix": "randomProp",
+    "body": [
+      "const randomProp = (obj) => Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];"
+    ],
+    "description": "Pick a random property of an object"
+  },
+  "Get random items of an array": {
+    "prefix": "randomItems",
+    "body": [
+      "const randomItems = (arr, count) => arr.concat().reduce((p, _, __, arr) => (p[0] < count ? [p[0] + 1, p[1].concat(arr.splice((Math.random() * arr.length) | 0, 1))] : p), [0, []])[1];"
+    ],
+    "description": "Get random items of an array"
+  },
+  "Pick random lines from a text document": {
+    "prefix": "randomLines",
+    "body": [
+      "const randomLines = (str, count) => str.split(/\\r?\\n/).reduce((p, _, __, arr) => (p[0] < count ? [p[0] + 1, p[1].concat(arr.splice((Math.random() * arr.length) | 0, 1))] : p), [0, []])[1];"
+    ],
+    "description": "Pick random lines from a text document"
+  },
+  "Compare two dates": {
+    "prefix": "compare",
+    "body": [
+      "// `a` and `b` are `Date` instances",
+      "const compare = (a, b) => a.getTime() > b.getTime();"
+    ],
+    "description": "Compare two dates"
+  },
+  "Calculate the number of difference days between two dates": {
+    "prefix": "diffDays",
+    "body": [
+      "const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));"
+    ],
+    "description": "Calculate the number of difference days between two dates"
+  },
+  "Calculate the elapsted time since a given date and return the result": {
+    "prefix": "timeSince",
+    "body": [
+      "const timeSince = (date) => {",
+      "const now = new Date();",
+      "const diffInSeconds = Math.floor((now - date) / 1000);",
+      "const days = Math.floor(diffInSeconds / 86400);",
+      "if (days > 0) {",
+      "return `${days} day${days !== 1 ? 's' : ''} ago`;",
+      "}",
+      "const hours = Math.floor(diffInSeconds / 3600) % 24;",
+      "if (hours > 0) {",
+      "return `${hours} hour${hours !== 1 ? 's' : ''} ago`;",
+      "}",
+      "const minutes = Math.floor(diffInSeconds / 60) % 60;",
+      "if (minutes > 0) {",
+      "return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;",
+      "}",
+      "return 'Just now';",
+      "};"
+    ],
+    "description": "Calculate the elapsted time since a given date and return the result"
+  },
+  "Calculate the number of months between two dates": {
+    "prefix": "monthDiff",
+    "body": [
+      "const monthDiff = (startDate, endDate) => Math.max(0, (endDate.getFullYear() - startDate.getFullYear()) * 12 - startDate.getMonth() + endDate.getMonth());"
+    ],
+    "description": "Calculate the number of months between two dates"
+  },
+  "Add AM PM suffix to an hour": {
+    "prefix": "suffixAmPm",
+    "body": [
+      "// `h` is an hour number between 0 and 23",
+      "const suffixAmPm = (h) => `${h % 12 === 0 ? 12 : h % 12}${h < 12 ? 'am' : 'pm'}`;"
+    ],
+    "description": "Add AM PM suffix to an hour"
+  },
+  "Determine one year from now": {
+    "prefix": "plusOneYear",
+    "body": [
+      "const plusOneYear = ((d) => new Date(d.setFullYear(d.getFullYear() + 1)))(new Date());"
+    ],
+    "description": "Determine one year from now"
+  },
+  "Generate a random UUID": {
+    "prefix": "uuid",
+    "body": [
+      "const uuid = (a) => (a ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid));"
+    ],
+    "description": "Generate a random UUID"
+  },
+  "Format a date for the given locale": {
+    "prefix": "format",
+    "body": [
+      "// `date` is a `Date` object",
+      "// `locale` is a locale (en-US, pt-BR, for example)",
+      "const format = (date, locale) => new Intl.DateTimeFormat(locale).format(date);"
+    ],
+    "description": "Format a date for the given locale"
+  },
+  "Get the current quarter of a date": {
+    "prefix": "getQuarter",
+    "body": [
+      "const getQuarter = (d = new Date()) => Math.ceil((d.getMonth() + 1) / 3);"
+    ],
+    "description": "Get the current quarter of a date"
+  },
+  "Convert seconds to hh:mm:ss format": {
+    "prefix": "formatSeconds",
+    "body": [
+      "// `s` is number of seconds",
+      "const formatSeconds = (s) => new Date(s * 1000).toISOString().substr(11, 8);",
+      "// Or",
+      "const formatSeconds = (s) => new Date(s * 1000).toUTCString().match(/(\\d\\d:\\d\\d:\\d\\d)/)[0];",
+      "// Or",
+      "const formatSeconds = (s) => [parseInt(s / 60 / 60), parseInt((s / 60) % 60), parseInt(s % 60)].join(':').replace(/\\b(\\d)\\b/g, '0$1');"
+    ],
+    "description": "Convert seconds to hh:mm:ss format"
+  },
+  "Get the current timestamp in seconds": {
+    "prefix": "ts",
+    "body": [
+      "const ts = () => Math.floor(new Date().getTime() / 1000);"
+    ],
+    "description": "Get the current timestamp in seconds"
+  },
+  "Get the hours and minutes from the decimal time": {
+    "prefix": "getHoursAndMinutes",
+    "body": [
+      "const getHoursAndMinutes = (value) => [Math.floor(value), Math.floor((value * 60) % 60)];"
+    ],
+    "description": "Get the hours and minutes from the decimal time"
+  },
+  "Extract year, month, day, hour, minute, second and millisecond from a date": {
+    "prefix": "extract",
+    "body": [
+      "// `date` is a `Date` object",
+      "const extract = (date) =>",
+      "date",
+      ".toISOString()",
+      ".split(/[^0-9]/)",
+      ".slice(0, -1);",
+      "// `extract` is an array of [year, month, day, hour, minute, second, millisecond]"
+    ],
+    "description": "Extract year, month, day, hour, minute, second and millisecond from a date"
+  },
+  "Get the day of the year from a date": {
+    "prefix": "dayOfYear",
+    "body": [
+      "// `date` is a Date object",
+      "const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));"
+    ],
+    "description": "Get the day of the year from a date"
+  },
+  "Convert a date to YYYY-MM-DD format": {
+    "prefix": "formatYmd",
+    "body": [
+      "// `date` is a `Date` object",
+      "const formatYmd = (date) => date.toISOString().slice(0, 10);"
+    ],
+    "description": "Convert a date to YYYY-MM-DD format"
+  },
+  "Get the month name of a date": {
+    "prefix": "getMonthName",
+    "body": [
+      "// `date` is a Date object",
+      "const getMonthName = (date) => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', ' November', 'December'][date.getMonth()];"
+    ],
+    "description": "Get the month name of a date"
+  },
+  "Get the first date in the month of a date": {
+    "prefix": "getFirstDate",
+    "body": [
+      "const getFirstDate = (d = new Date()) => new Date(d.getFullYear(), d.getMonth(), 1);"
+    ],
+    "description": "Get the first date in the month of a date"
+  },
+  "Get the timezone string": {
+    "prefix": "getTimezone",
+    "body": [
+      "const getTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone;"
+    ],
+    "description": "Get the timezone string"
+  },
+  "Get the last date in the month of a date": {
+    "prefix": "getLastDate",
+    "body": [
+      "const getLastDate = (d = new Date()) => new Date(d.getFullYear(), d.getMonth() + 1, 0);"
+    ],
+    "description": "Get the last date in the month of a date"
+  },
+  "Check if a character is a digit": {
+    "prefix": "isDigit",
+    "body": [
+      "const isDigit = (char) => char < 10;",
+      "// Or",
+      "const isDigit = (char) => char.length === 1 && c >= '0' && c <= '9';",
+      "// Or",
+      "const isDigit = (char) => Boolean([true, true, true, true, true, true, true, true, true, true][char]);"
+    ],
+    "description": "Check if a character is a digit"
+  },
+  "Get the tomorrow date": {
+    "prefix": "tomorrow",
+    "body": [
+      "const tomorrow = ((d) => new Date(d.setDate(d.getDate() + 1)))(new Date());",
+      "// Or",
+      "const tomorrow = new Date(new Date().valueOf() + 1000 * 60 * 60 * 24);"
+    ],
+    "description": "Get the tomorrow date"
+  },
+  "Get the number of days in given month": {
+    "prefix": "daysInMonth",
+    "body": [
+      "// `month` is zero-based index",
+      "const daysInMonth = (month, year) => new Date(year, month, 0).getDate();"
+    ],
+    "description": "Get the number of days in given month"
+  },
+  "Initialize the current date but set time to midnight": {
+    "prefix": "midnightOfToday",
+    "body": [
+      "const midnightOfToday = () => new Date(new Date().setHours(0, 0, 0, 0));"
+    ],
+    "description": "Initialize the current date but set time to midnight"
+  },
+  "Get the weekday of a date": {
+    "prefix": "getWeekday",
+    "body": [
+      "// `date` is a Date object",
+      "const getWeekday = (date) => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];"
+    ],
+    "description": "Get the weekday of a date"
+  },
+  "Get the total number of days in a year": {
+    "prefix": "numberOfDays",
+    "body": [
+      "const numberOfDays = (year) => ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 366 : 365);",
+      "// Or",
+      "const numberOfDays = (year) => (new Date(year, 1, 29).getDate() === 29 ? 366 : 365);"
+    ],
+    "description": "Get the total number of days in a year"
+  },
+  "Sort an array of dates": {
+    "prefix": "sortDescending",
+    "body": [
+      "// `arr` is an array of `Date` items",
+      "const sortDescending = (arr) => arr.sort((a, b) => a.getTime() > b.getTime());",
+      "const sortAscending = (arr) => arr.sort((a, b) => a.getTime() < b.getTime());"
+    ],
+    "description": "Sort an array of dates"
+  },
+  "Check if a date is a weekday": {
+    "prefix": "isWeekday",
+    "body": [
+      "// `date` is a Date object",
+      "const isWeekday = (date = new Date()) => date.getDay() % 6 !== 0;"
+    ],
+    "description": "Check if a date is a weekday"
+  },
+  "Get the yesterday date": {
+    "prefix": "yesterday",
+    "body": [
+      "const yesterday = ((d) => new Date(d.setDate(d.getDate() - 1)))(new Date());",
+      "// Or",
+      "const yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);"
+    ],
+    "description": "Get the yesterday date"
+  },
+  "Check if a date is a weekend": {
+    "prefix": "isWeekend",
+    "body": [
+      "// `date` is a Date object",
+      "const isWeekend = (date = new Date()) => date.getDay() % 6 === 0;"
+    ],
+    "description": "Check if a date is a weekend"
+  },
+  "Check if a date is between two dates": {
+    "prefix": "isBetween",
+    "body": [
+      "// `min`, `max` and `date` are `Date` instances",
+      "const isBetween = (date, min, max) => date.getTime() >= min.getTime() && date.getTime() <= max.getTime();"
+    ],
+    "description": "Check if a date is between two dates"
+  },
+  "Check if a date is today": {
+    "prefix": "isToday",
+    "body": [
+      "// `date` is a Date object",
+      "const isToday = (date) => date.toISOString().slice(0, 10) === new Date().toISOString().slice(0, 10);"
+    ],
+    "description": "Check if a date is today"
+  },
+  "Check if a flat array has duplicate values": {
+    "prefix": "hasDuplicateValues",
+    "body": [
+      "const hasDuplicateValues = (arr) => new Set(arr).size !== arr.length;",
+      "// Or",
+      "const hasDuplicateValues = (arr) => arr.some((item, index, arr) => arr.indexOf(item) !== index);"
+    ],
+    "description": "Check if a flat array has duplicate values"
+  },
+  "Check if a number is a power of 2": {
+    "prefix": "isPowerOfTwo",
+    "body": [
+      "const isPowerOfTwo = (n) => (n & (n - 1)) === 0;"
+    ],
+    "description": "Check if a number is a power of 2"
+  },
+  "Check if a number is even": {
+    "prefix": "isEven",
+    "body": [
+      "const isEven = (n) => n % 2 === 0;",
+      "// Or",
+      "const isEven = (n) => (n & 1) === 0;",
+      "// Or",
+      "const isEven = (n) => !(n & 1);",
+      "// Or",
+      "const isEven = (n) => Number.isInteger(n / 2);"
+    ],
+    "description": "Check if a number is even"
+  },
+  "Check if a number is in a given range": {
+    "prefix": "inRange",
+    "body": [
+      "const inRange = (num, a, b, threshold = 0) => Math.min(a, b) - threshold <= num && num <= Math.max(a, b) + threshold;"
+    ],
+    "description": "Check if a number is in a given range"
+  },
+  "Check if a number is negative": {
+    "prefix": "isNegative",
+    "body": [
+      "const isNegative = (n) => Math.sign(n) === -1;",
+      "// Or",
+      "const isNegative = (n) => n < 0;"
+    ],
+    "description": "Check if a number is negative"
+  },
+  "Check if a number is positive": {
+    "prefix": "isPositive",
+    "body": [
+      "const isPositive = (n) => Math.sign(n) === 1;"
+    ],
+    "description": "Check if a number is positive"
+  },
+  "Check if a date occurs in the current year": {
+    "prefix": "isCurrentYear",
+    "body": [
+      "// `date` is a Date object",
+      "const isCurrentYear = (date) => date.getUTCFullYear() === new Date().getUTCFullYear();"
+    ],
+    "description": "Check if a date occurs in the current year"
+  },
+  "Check if a number is odd": {
+    "prefix": "isOdd",
+    "body": [
+      "const isOdd = (n) => n % 2 !== 0;",
+      "// Or",
+      "const isOdd = (n) => !!(n & 1);",
+      "// Or",
+      "const isOdd = (n) => !Number.isInteger(n / 2);"
+    ],
+    "description": "Check if a number is odd"
+  },
+  "Check if a given integer is a prime number": {
+    "prefix": "isPrime",
+    "body": [
+      "const isPrime = (n) =>",
+      "n > 1 &&",
+      "Array(Math.floor(Math.sqrt(n)) - 1)",
+      ".fill(0)",
+      ".map((_, i) => i + 2)",
+      ".every((i) => n % i !== 0);"
+    ],
+    "description": "Check if a given integer is a prime number"
+  },
+  "Check if a string contains only digits": {
+    "prefix": "isNumeric",
+    "body": [
+      "const isNumeric = (str) => !/[^0-9]/.test(str);"
+    ],
+    "description": "Check if a string contains only digits"
+  },
+  "Check if a string contains only ASCII characters": {
+    "prefix": "isAscii",
+    "body": [
+      "const isAscii = (str) => /^[\\x00-\\x7F]+$/.test(str);"
+    ],
+    "description": "Check if a string contains only ASCII characters"
+  },
+  "Check if a string contains only letters and numbers": {
+    "prefix": "isAlphanumeric",
+    "body": [
+      "const isAlphanumeric = (str) => /^[0-9A-Z]+$/i.test(str);"
+    ],
+    "description": "Check if a string contains only letters and numbers"
+  },
+  "Check if a string contains upper case characters": {
+    "prefix": "containsUpperCase",
+    "body": [
+      "const containsUpperCase = (str) => str !== str.toLowerCase();"
+    ],
+    "description": "Check if a string contains upper case characters"
+  },
+  "Check if a string is a hexadecimal number": {
+    "prefix": "isHexadecimal",
+    "body": [
+      "const isHexadecimal = (str) => /^[A-F0-9]+$/i.test(str);",
+      "// Or",
+      "const isHexadecimal = (str) => str.split('').every((c) => '0123456789ABCDEFabcdef'.indexOf(c) !== -1);"
+    ],
+    "description": "Check if a string is a hexadecimal number"
+  },
+  "Check if a string contains whitespace": {
+    "prefix": "containsWhitespace",
+    "body": [
+      "const containsWhitespace = (str) => (str) => /\\s/.test(str);"
+    ],
+    "description": "Check if a string contains whitespace"
+  },
+  "Check if a string contains only letters": {
+    "prefix": "isAlpha",
+    "body": [
+      "const isAlpha = (str) => /^[A-Z]+$/i.test(str);"
+    ],
+    "description": "Check if a string contains only letters"
+  },
+  "Check if a string is upper case": {
+    "prefix": "isUpperCase",
+    "body": [
+      "const isUpperCase = (str) => str === str.toUpperCase();"
+    ],
+    "description": "Check if a string is upper case"
+  },
+  "Check if a string contains lower case characters": {
+    "prefix": "containsLowerCase",
+    "body": [
+      "const containsLowerCase = (str) => str !== str.toUpperCase();"
+    ],
+    "description": "Check if a string contains lower case characters"
+  },
+  "Check if a string is a hexadecimal color": {
+    "prefix": "isHexColor",
+    "body": [
+      "const isHexColor = (color) => /^#([0-9A-F]{3}|[0-9A-F]{4}|[0-9A-F]{6}|[0-9A-F]{8})$/i.test(color);"
+    ],
+    "description": "Check if a string is a hexadecimal color"
+  },
+  "Check if a string is a MongoDB ObjectId": {
+    "prefix": "isMongoId",
+    "body": [
+      "const isMongoId = (str) => str.length === 24 && /^[A-F0-9]+$/i.test(str);",
+      "// Or",
+      "const isMongoId = (str) => str.length === 24 && str.split('').every((c) => '0123456789ABCDEFabcdef'.indexOf(c) !== -1);"
+    ],
+    "description": "Check if a string is a MongoDB ObjectId"
+  },
+  "Check if a value is a number": {
+    "prefix": "isNumber",
+    "body": [
+      "const isNumber = (value) => !isNaN(parseFloat(value)) && isFinite(value);"
+    ],
+    "description": "Check if a value is a number"
+  },
+  "Check if a string is an octal number": {
+    "prefix": "isOctal",
+    "body": [
+      "const isOctal = (str) => /^(0o)?[0-7]+$/i.test(str);"
+    ],
+    "description": "Check if a string is an octal number"
+  },
+  "Check if a value is a plain object": {
+    "prefix": "isPlainObject",
+    "body": [
+      "const isPlainObject = (v) => !!v && typeof v === 'object' && (v.__proto__ === null || v.__proto__ === Object.prototype);"
+    ],
+    "description": "Check if a value is a plain object"
+  },
+  "Check if a value is a regular expression": {
+    "prefix": "isRegExp",
+    "body": [
+      "const isRegExp = (value) => Object.prototype.toString.call(value) === '[object RegExp]';"
+    ],
+    "description": "Check if a value is a regular expression"
+  },
+  "Check if a value is an object": {
+    "prefix": "isObject",
+    "body": [
+      "const isObject = (v) => v !== null && typeof v === 'object';"
+    ],
+    "description": "Check if a value is an object"
+  },
+  "Check if a value is a business identifier code": {
+    "prefix": "isBIC",
+    "body": [
+      "const isBIC = (value) => /^[a-zA-Z]{6}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?$/.test(value);"
+    ],
+    "description": "Check if a value is a business identifier code"
+  },
+  "Check if a value is base58 encoded": {
+    "prefix": "isBase58",
+    "body": [
+      "// It doesn't accept the I, O, l characters",
+      "const isBase58 = (value) => /^[A-HJ-NP-Za-km-z1-9]*$/.test(value);"
+    ],
+    "description": "Check if a value is base58 encoded"
+  },
+  "Check if a string is lower case": {
+    "prefix": "isLowerCase",
+    "body": [
+      "const isLowerCase = (str) => str === str.toLowerCase();"
+    ],
+    "description": "Check if a string is lower case"
+  },
+  "Check if a value is base32 encoded": {
+    "prefix": "isBase32",
+    "body": [
+      "const isBase32 = (value) => value.length % 8 === 0 && /^[A-Z2-7]+=*$/.test(value);"
+    ],
+    "description": "Check if a value is base32 encoded"
+  },
+  "Check if a value is a string": {
+    "prefix": "isString",
+    "body": [
+      "const isString = (value) => Object.prototype.toString.call(value) === '[object String]';"
+    ],
+    "description": "Check if a value is a string"
+  },
+  "Check if a year is leap year": {
+    "prefix": "isLeapYear",
+    "body": [
+      "const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;",
+      "// Or",
+      "// Get the number of days in February",
+      "const isLeapYear = (year) => new Date(year, 1, 29).getDate() === 29;"
+    ],
+    "description": "Check if a year is leap year"
+  },
+  "Check if an array contains a value matching some criterias": {
+    "prefix": "contains",
+    "body": [
+      "const contains = (arr, criteria) => arr.some((v) => criteria(v));",
+      "// Or",
+      "const contains = (arr, criteria) => arr.some(criteria);",
+      "// Or",
+      "const contains = (arr, criteria) => arr.filter(criteria).length > 0;"
+    ],
+    "description": "Check if an array contains a value matching some criterias"
+  },
+  "Check if all items in an array are equal": {
+    "prefix": "areEqual",
+    "body": [
+      "const areEqual = (arr) => arr.length > 0 && arr.every((item) => item === arr[0]);",
+      "// Or",
+      "const areEqual = (arr) => new Set(arr).size === 1;"
+    ],
+    "description": "Check if all items in an array are equal"
+  },
+  "Check if a value is base64 encoded": {
+    "prefix": "isBase64",
+    "body": [
+      "const isBase64 = (value) => /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/.test(value);"
+    ],
+    "description": "Check if a value is base64 encoded"
+  },
+  "Check if an object is an array": {
+    "prefix": "isArray",
+    "body": [
+      "const isArray = (obj) => Array.isArray(obj);"
+    ],
+    "description": "Check if an object is an array"
+  },
+  "Check if an array is not empty": {
+    "prefix": "isNotEmpty",
+    "body": [
+      "const isNotEmpty = (arr) => Array.isArray(arr) && Object.keys(arr).length > 0;"
+    ],
+    "description": "Check if an array is not empty"
+  },
+  "Check if an array is subset of other array": {
+    "prefix": "isSubset",
+    "body": [
+      "// Check if `b` is subset of `a`",
+      "const isSubset = (a, b) => new Set(b).size === new Set(b.concat(a)).size;",
+      "// Or",
+      "const isSubset = (a, b) => b.join('|').includes(a.join('|'));"
+    ],
+    "description": "Check if an array is subset of other array"
+  },
+  "Check if all array elements are equal to a given value": {
+    "prefix": "isEqual",
+    "body": [
+      "const isEqual = (arr, value) => arr.every((item) => item === value);",
+      "// Or",
+      "// Ends earlier for false arrays",
+      "const isEqual = (arr, value) => !arr.some((item) => item !== value);"
+    ],
+    "description": "Check if all array elements are equal to a given value"
+  },
+  "Check if an object is a Promise": {
+    "prefix": "isPromise",
+    "body": [
+      "const isPromise = (obj) => !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';"
+    ],
+    "description": "Check if an object is a Promise"
+  },
+  "Check if a value is nil": {
+    "prefix": "isNil",
+    "body": [
+      "const isNil = (value) => value == null;"
+    ],
+    "description": "Check if a value is nil"
+  },
+  "Check if a path is relative": {
+    "prefix": "isRelative",
+    "body": [
+      "const isRelative = (path) => !/^([a-z]+:)?[\\\\/]/i.test(path);"
+    ],
+    "description": "Check if a path is relative"
+  },
+  "Check if an object is empty": {
+    "prefix": "isEmpty",
+    "body": [
+      "const isEmpty = (obj) => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;",
+      "// Or for enumerable property names only",
+      "const isEmpty = (obj) => JSON.stringify(obj) === '{}';"
+    ],
+    "description": "Check if an object is empty"
+  },
+  "Capitalize a string": {
+    "prefix": "capitalize",
+    "body": [
+      "const capitalize = (str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`;",
+      "// Or",
+      "const capitalize = ([first, ...rest]) => `${first.toUpperCase()}${rest.join('')}`;",
+      "// Or",
+      "const capitalize = (str) => str.replace(/^([a-z])/, (first) => first.toUpperCase());"
+    ],
+    "description": "Capitalize a string"
+  },
+  "Check if a string is a palindrome": {
+    "prefix": "isPalindrome",
+    "body": [
+      "const isPalindrome = (str) => str === str.split('').reverse().join('');"
+    ],
+    "description": "Check if a string is a palindrome"
+  },
+  "Check if two strings are anagram": {
+    "prefix": "areAnagram",
+    "body": [
+      "const areAnagram = (str1, str2) => str1.toLowerCase().split('').sort().join('') === str2.toLowerCase().split('').sort().join('');"
+    ],
+    "description": "Check if two strings are anagram"
+  },
+  "Get the difference in days between two dates": {
+    "prefix": "getDaysDiffBetweenDates",
+    "body": [
+      "const getDaysDiffBetweenDates = (startDate, endDate) =>",
+      "(endDate - startDate) / (1000 * 3600 * 24);"
+    ],
+    "description": "Get the difference in days between two dates"
+  },
+  "Validate a Gregorian date": {
+    "prefix": "isValidDate",
+    "body": [
+      "// `m`: the month (zero-based index)",
+      "// `d`: the day",
+      "// `y`: the year",
+      "const isValidDate = (m, d, y) => 0 <= m && m <= 11 && 0 < y && y < 32768 && 0 < d && d <= new Date(y, m, 0).getDate();"
+    ],
+    "description": "Validate a Gregorian date"
+  },
+  "Convert a base64 encoded string to an uint8 array": {
+    "prefix": "base64ToUint8",
+    "body": [
+      "const base64ToUint8 = (str) => Uint8Array.from(atob(str), (c) => c.charCodeAt(0));"
+    ],
+    "description": "Convert a base64 encoded string to an uint8 array"
+  },
+  "Check if a string is valid JSON": {
+    "prefix": "isValidJSON",
+    "body": [
+      "const isValidJSON = (str) => {",
+      "try {",
+      "JSON.parse(str);",
+      "return true;",
+      "} catch (err) {",
+      "return false;",
+      "}",
+      "};"
+    ],
+    "description": "Check if a string is valid JSON"
+  },
+  "Convert a string to PascalCase": {
+    "prefix": "toPascalCase",
+    "body": [
+      "const toPascalCase = (str) => (str.match(/[a-zA-Z0-9]+/g) || []).map((w) => `${w.charAt(0).toUpperCase()}${w.slice(1)}`).join('');"
+    ],
+    "description": "Convert a string to PascalCase"
+  },
+  "Check if a URL is absolute": {
+    "prefix": "isAbsoluteUrl",
+    "body": [
+      "const isAbsoluteUrl = (url) => /^[a-z][a-z0-9+.-]*:/.test(url);"
+    ],
+    "description": "Check if a URL is absolute"
+  },
+  "Convert a string to URL slug": {
+    "prefix": "slugify",
+    "body": [
+      "const slugify = (str) =>",
+      "str",
+      ".toLowerCase()",
+      ".replace(/\\s+/g, '-')",
+      ".replace(/[^\\w-]+/g, '');"
+    ],
+    "description": "Convert a string to URL slug"
+  },
+  "Convert a letter to associate emoji": {
+    "prefix": "letterToEmoji",
+    "body": [
+      "const letterToEmoji = (c) => String.fromCodePoint(c.toLowerCase().charCodeAt(0) + 127365);"
+    ],
+    "description": "Convert a letter to associate emoji"
+  },
+  "Convert a string to camelCase": {
+    "prefix": "toCamelCase",
+    "body": [
+      "const toCamelCase = (str) => str.trim().replace(/[-_\\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''));"
+    ],
+    "description": "Convert a string to camelCase"
+  },
+  "Check if a string consists of a repeated character sequence": {
+    "prefix": "consistsRepeatedSubstring",
+    "body": [
+      "const consistsRepeatedSubstring = (str) => `${str}${str}`.indexOf(str, 1) !== str.length;"
+    ],
+    "description": "Check if a string consists of a repeated character sequence"
+  },
+  "Convert the name of an Excel column to number": {
+    "prefix": "getIndex",
+    "body": [
+      "const getIndex = (col) => col.split('').reduce((prev, next) => prev * 26 + parseInt(next, 36) - 9, 0);"
+    ],
+    "description": "Convert the name of an Excel column to number"
+  },
+  "Convert snake_case to camelCase": {
+    "prefix": "snakeToCamel",
+    "body": [
+      "const snakeToCamel = (str) => str.toLowerCase().replace(/(_\\w)/g, (m) => m.toUpperCase().substr(1));"
+    ],
+    "description": "Convert snake_case to camelCase"
+  },
+  "Convert camelCase to kebab-case and vice versa": {
+    "prefix": "kebabToCamel",
+    "body": [
+      "const kebabToCamel = (str) => str.replace(/-./g, (m) => m.toUpperCase()[1]);",
+      "const camelToKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();"
+    ],
+    "description": "Convert camelCase to kebab-case and vice versa"
+  },
+  "Convert a Windows file path to Unix path": {
+    "prefix": "toUnixPath",
+    "body": [
+      "const toUnixPath = (path) => path.replace(/[\\\\/]+/g, '/').replace(/^([a-zA-Z]+:|\\.\\/)/, '');"
+    ],
+    "description": "Convert a Windows file path to Unix path"
+  },
+  "Decapitalize a string": {
+    "prefix": "decapitalize",
+    "body": [
+      "const decapitalize = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;",
+      "// Or",
+      "const decapitalize = ([first, ...rest]) => `${first.toLowerCase()}${rest.join('')}`;"
+    ],
+    "description": "Decapitalize a string"
+  },
+  "Count the occurrences of a character in a string": {
+    "prefix": "countOccurrences",
+    "body": [
+      "const countOccurrences = (str, char) => [...str].reduce((a, v) => (v === char ? a + 1 : a), 0);",
+      "// Or",
+      "const countOccurrences = (str, char) => str.split('').reduce((a, v) => (v === char ? a + 1 : a), 0);",
+      "// Or",
+      "const countOccurrences = (str, char) => [...str].filter((item) => item === char).length;",
+      "// Or",
+      "const countOccurrences = (str, char) => str.split('').filter((item) => item === char).length;"
+    ],
+    "description": "Count the occurrences of a character in a string"
+  },
+  "Count the number of words in a string": {
+    "prefix": "countWords",
+    "body": [
+      "const countWords = (str) => str.trim().split(/\\s+/).length;"
+    ],
+    "description": "Count the number of words in a string"
+  },
+  "Convert an uint8 array to a base64 encoded string": {
+    "prefix": "uint8ToBase64",
+    "body": [
+      "const uint8ToBase64 = (arr) =>",
+      "btoa(",
+      "Array(arr.length)",
+      ".fill('')",
+      ".map((_, i) => String.fromCharCode(arr[i]))",
+      ".join('')",
+      ");",
+      "// For Node.js",
+      "const uint8ToBase64 = (arr) => Buffer.from(arr).toString('base64');"
+    ],
+    "description": "Convert an uint8 array to a base64 encoded string"
+  },
+  "Generate a hash of a string": {
+    "prefix": "hash",
+    "body": [
+      "const hash = (str) => str.split('').reduce((prev, curr) => (Math.imul(31, prev) + curr.charCodeAt(0)) | 0, 0);",
+      "// Or",
+      "const hash = (str) => str.split('').reduce((prev, curr) => ((prev << 5) - prev + curr.charCodeAt(0)) | 0, 0);"
+    ],
+    "description": "Generate a hash of a string"
+  },
+  "Decode HTML entities": {
+    "prefix": "decodeHtmlEntities",
+    "body": [
+      "const decodeHtmlEntities = (str) => str.replace(/&#(\\w+)(^\\w|;)?/g, (_, dec) => String.fromCharCode(dec));"
+    ],
+    "description": "Decode HTML entities"
+  },
+  "Get the file name from a URL": {
+    "prefix": "fileName",
+    "body": [
+      "const fileName = (url: string): string => url.substring(url.lastIndexOf('/') + 1);"
+    ],
+    "description": "Get the file name from a URL"
+  },
+  "Get the base URL without any parameters": {
+    "prefix": "baseUrl",
+    "body": [
+      "const baseUrl = (url) => (url.indexOf('?') === -1 ? url : url.slice(0, url.indexOf('?')));",
+      "// Or",
+      "// Note that `includes` isn't supported in IE 11",
+      "const baseUrl = (url) => (url.includes('?') ? url.slice(0, url.indexOf('?')) : url);",
+      "// Or",
+      "const baseUrl = (url) => url.split('?')[0];"
+    ],
+    "description": "Get the base URL without any parameters"
+  },
+  "Get the length of a string in bytes": {
+    "prefix": "bytes",
+    "body": [
+      "const bytes = (str) => new Blob([str]).size;"
+    ],
+    "description": "Get the length of a string in bytes"
+  },
+  "Escape HTML special characters": {
+    "prefix": "escape",
+    "body": [
+      "const escape = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, '&#39;').replace(/\"/g, '&quot;');",
+      "// Or",
+      "const escape = (str) => str.replace(/[&<>\"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' }[m]));"
+    ],
+    "description": "Escape HTML special characters"
+  },
+  "Prepend a line number to each line of a text document": {
+    "prefix": "prependNumbers",
+    "body": [
+      "const prependNumbers = (str) =>",
+      "str",
+      ".split(/\\r?\\n/)",
+      ".map((line, i) => `${(i + 1).toString().padStart(2, ' ')} ${line}`)",
+      ".join('\\n');"
+    ],
+    "description": "Prepend a line number to each line of a text document"
+  },
+  "Format a string": {
+    "prefix": "format",
+    "body": [
+      "const format = (str, ...vals) => vals.reduce((s, v, i) => s.replace(new RegExp('\\\\{' + i + '\\\\}', 'g'), v), str);"
+    ],
+    "description": "Format a string"
+  },
+  "Get the file extension from a file name": {
+    "prefix": "ext",
+    "body": [
+      "const ext = (fileName) => fileName.split('.').pop();"
+    ],
+    "description": "Get the file extension from a file name"
+  },
+  "Remove duplicate lines of a text document": {
+    "prefix": "removeDuplicateLines",
+    "body": [
+      "const removeDuplicateLines = (str) => Array.from(new Set(str.split(/\\r?\\n/))).join('\\n');"
+    ],
+    "description": "Remove duplicate lines of a text document"
+  },
+  "Normalize file path slashes": {
+    "prefix": "normalizePath",
+    "body": [
+      "const normalizePath = (path) => path.replace(/[\\\\/]+/g, '/');"
+    ],
+    "description": "Normalize file path slashes"
+  },
+  "Remove empty lines of a text document": {
+    "prefix": "removeEmptyLines",
+    "body": [
+      "const removeEmptyLines = (str) =>",
+      "str",
+      ".split(/\\r?\\n/)",
+      ".filter((line) => line.trim() !== '')",
+      ".join('\\n');"
+    ],
+    "description": "Remove empty lines of a text document"
+  },
+  "Make the first character of a string lowercase": {
+    "prefix": "lowercaseFirst",
+    "body": [
+      "const lowercaseFirst = (str) => `${str.charAt(0).toLowerCase()}${str.slice(1)}`;"
+    ],
+    "description": "Make the first character of a string lowercase"
+  },
+  "Get the number of a character in a string": {
+    "prefix": "characterCount",
+    "body": [
+      "const characterCount = (str, char) => str.split(char).length - 1;",
+      "// Or",
+      "const characterCount = (str, char) => str.replace(new RegExp(String.raw`[^${char}]`, 'g'), '').length;"
+    ],
+    "description": "Get the number of a character in a string"
+  },
+  "Remove spaces from a string": {
+    "prefix": "removeSpaces",
+    "body": [
+      "const removeSpaces = (str) => str.replace(/\\s/g, '');"
+    ],
+    "description": "Remove spaces from a string"
+  },
+  "Replace multiple spaces with a single space": {
+    "prefix": "replaceSpaces",
+    "body": [
+      "// Replace spaces, tabs and new line characters",
+      "const replaceSpaces = (str) => str.replace(/\\s\\s+/g, ' ');",
+      "// Only replace spaces",
+      "const replaceOnlySpaces = (str) => str.replace(/  +/g, ' ');"
+    ],
+    "description": "Replace multiple spaces with a single space"
+  },
+  "Replace all line breaks with br elements": {
+    "prefix": "nl2br",
+    "body": [
+      "const nl2br = (str) => str.replace(new RegExp('\\r?\\n', 'g'), '<br>');",
+      "// In React",
+      "str.split('\\n').map((item, index) => (",
+      "<React.Fragment key={index}>",
+      "{item}",
+      "<br />",
+      "</React.Fragment>",
+      "));"
+    ],
+    "description": "Replace all line breaks with br elements"
+  },
+  "Reverse the order of lines of a text": {
+    "prefix": "reverseLines",
+    "body": [
+      "const reverseLines = (str) => str.split(/\\r?\\n/).reverse().join('\\n');"
+    ],
+    "description": "Reverse the order of lines of a text"
+  },
+  "Repeat a string": {
+    "prefix": "repeat",
+    "body": [
+      "const repeat = (str, numberOfTimes) => str.repeat(numberOfTimes);",
+      "// Or",
+      "const repeat = (str, numberOfTimes) => Array(numberOfTimes + 1).join(str);"
+    ],
+    "description": "Repeat a string"
+  },
+  "Replace all tab characters with spaces": {
+    "prefix": "replace",
+    "body": [
+      "const replace = (str, numSpaces = 4) => str.replaceAll('\\t', ' '.repeat(numSpaces));"
+    ],
+    "description": "Replace all tab characters with spaces"
+  },
+  "Reverse a string": {
+    "prefix": "reverse",
+    "body": [
+      "const reverse = (str) => str.split('').reverse().join('');",
+      "// Or",
+      "const reverse = (str) => [...str].reverse().join('');",
+      "// Or",
+      "const reverse = (str) => str.split('').reduce((rev, char) => `${char}${rev}`, '');",
+      "// Or",
+      "const reverse = (str) => (str === '' ? '' : `${reverse(str.substr(1))}${str.charAt(0)}`);"
+    ],
+    "description": "Reverse a string"
+  },
+  "Sort the characters of a string in the alphabetical order": {
+    "prefix": "sort",
+    "body": [
+      "const sort = (str) =>",
+      "str",
+      ".split('')",
+      ".sort((a, b) => a.localeCompare(b))",
+      ".join('');"
+    ],
+    "description": "Sort the characters of a string in the alphabetical order"
+  },
+  "Replace the first given number of characters of a string with another character": {
+    "prefix": "mask",
+    "body": [
+      "const mask = (str, num, mask) => `${str}`.slice(num).padStart(`${str}`.length, mask);"
+    ],
+    "description": "Replace the first given number of characters of a string with another character"
+  },
+  "Sort lines of a text document in the alphabetical order": {
+    "prefix": "sortLines",
+    "body": [
+      "const sortLines = (str) => str.split(/\\r?\\n/).sort().join('\\n');",
+      "// Reverse the order",
+      "const reverseSortedLines = (str) => str.split(/\\r?\\n/).sort().reverse().join('\\n');"
+    ],
+    "description": "Sort lines of a text document in the alphabetical order"
+  },
+  "Trim slashes at the beginning and the end of a string": {
+    "prefix": "trimSlashes",
+    "body": [
+      "const trimSlashes = (str) => str.replace(/^\\/+|\\/+$/g, '');",
+      "// Or",
+      "const trimSlashes = (str) => str.split('/').filter(Boolean).join('/');"
+    ],
+    "description": "Trim slashes at the beginning and the end of a string"
+  },
+  "Swap case of characters in a string": {
+    "prefix": "swapCase",
+    "body": [
+      "const swapCase = (str) =>",
+      "str",
+      ".split('')",
+      ".map((c) => (c === c.toLowerCase() ? c.toUpperCase() : c.toLowerCase()))",
+      ".join('');"
+    ],
+    "description": "Swap case of characters in a string"
+  },
+  "Trim some character": {
+    "prefix": "trim",
+    "body": [
+      "const trim = (str, char) => str.split(char).filter(Boolean).join();"
+    ],
+    "description": "Trim some character"
+  },
+  "Strip ANSI codes from a string": {
+    "prefix": "stripAnsiCodes",
+    "body": [
+      "const stripAnsiCodes = (str) => str.replace(/[\\u001b\\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');"
+    ],
+    "description": "Strip ANSI codes from a string"
+  },
+  "Trim the file extension from a file name": {
+    "prefix": "trimExt",
+    "body": [
+      "const trimExt = (fileName) => (fileName.indexOf('.') === -1 ? fileName : fileName.split('.').slice(0, -1).join('.'));"
+    ],
+    "description": "Trim the file extension from a file name"
+  },
+  "Unescape HTML special characters": {
+    "prefix": "unescape",
+    "body": [
+      "const unescape = (str) =>",
+      "str",
+      ".replace(/&amp;/g, '&')",
+      ".replace(/&lt;/g, '<')",
+      ".replace(/&gt;/g, '>')",
+      ".replace(/&#0*39;/g, \"'\")",
+      ".replace(/&quot;/g, '\"');"
+    ],
+    "description": "Unescape HTML special characters"
+  },
+  "Truncate a string at full words": {
+    "prefix": "truncate",
+    "body": [
+      "const truncate = (str, max, suffix) => (str.length < max ? str : `${str.substr(0, str.substr(0, max - suffix.length).lastIndexOf(' '))}${suffix}`);"
+    ],
+    "description": "Truncate a string at full words"
+  },
+  "Uppercase the first character of each word in a string": {
+    "prefix": "uppercaseWords",
+    "body": [
+      "const uppercaseWords = (str) =>",
+      "str",
+      ".split(' ')",
+      ".map((w) => `${w.charAt(0).toUpperCase()}${w.slice(1)}`)",
+      ".join(' ');",
+      "// Or",
+      "const uppercaseWords = (str) => str.replace(/^(.)|\\s+(.)/g, (c) => c.toUpperCase());"
+    ],
+    "description": "Uppercase the first character of each word in a string"
+  }
+}
