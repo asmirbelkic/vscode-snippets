@@ -1,5 +1,34 @@
-@import "./common";
+body {
+	background: #fffefd;
+	font-family: "IBM Plex Sans", sans-serif;
+	color: #402e32;
+	background-color: #fffefd;
+	font-size: 16px;
+	line-height: 130%;
+	margin: 0;
+}
+* {
+	box-sizing: border-box;
+}
 
+.container {
+	width: 100%;
+	max-width: 1272px;
+	grid-column-gap: 24px;
+	grid-row-gap: 24px;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-columns: 1fr;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 24px;
+	padding-right: 24px;
+	&.top {
+		margin-top: -128px;
+	}
+}
 @import "./blocks/card";
 @import "./blocks/category";
 @import "./blocks/hero";

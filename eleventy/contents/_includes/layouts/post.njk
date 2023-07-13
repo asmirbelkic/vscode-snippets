@@ -7,10 +7,8 @@ layout: layouts/base.njk
 <div class="container">
     <div class="header">
         <div class="header__breadcrumb">
-            <a class="header__link" href="/">/1-loc</a>
-            <a class="header__link" href="/{{ category | slug }}">/{{ category }}</a>
+            <a class="header__link" href="/{{ category | slug }}">{{ category }}</a>
         </div>
-        <a class="header__link header__link--primary" href="https://github.com/phuocng/1loc">GitHub {{ github.oneloc.stargazers }}★</a>
     </div>
     <div class="post">
         <h1 class="post__heading">{{ title }}</h1>

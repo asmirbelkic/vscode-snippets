@@ -1,15 +1,27 @@
 .card__item {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 1rem;
-    text-align: center;
-}
-
-.card__link {
-    color: #6366f1;
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
+	grid-column-gap: 12px;
+	grid-row-gap: 12px;
+	color: #402e32;
+	background-color: #fffefd;
+	border: 1px solid #e4dacb;
+	border-radius: 14px;
+	flex-direction: column;
+	padding: 32px;
+	font-weight: 400;
+	transition:
+		transform 0.2s,
+		color 0.2s;
+	display: flex;
+	box-shadow: 1px 1px 20px rgba(64, 46, 50, 0.1);
+	.card__link {
+		color: #402e32;
+		background-color: #fffefd;
+		font-size: 16px;
+		line-height: 130%;
+		font-weight: 500;
+		text-decoration: none;
+	}
+	&:hover {
+		transform: scale(0.98);
+	}
 }
